@@ -57,6 +57,7 @@ jobs:
 
   build_and_push:
     needs: tests
+    if: always()
     runs-on: ubuntu-latest
 
     steps:
@@ -89,10 +90,10 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_gateway:latest
 
-send_message:
+  send_message:
     needs: build_and_push
-    runs-on: ubuntu-latest
     if: always()
+    runs-on: ubuntu-latest
 
     steps:
       - name: Send Telegram message
@@ -101,7 +102,7 @@ send_message:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ✅ Kittygram успешно задеплоен!
+            ✅ Kittygram workflow завершён!
             Автор: ${{ github.actor }}
             Коммит: ${{ github.sha }}
             Сообщение: ${{ github.event.commits[0].message }}
