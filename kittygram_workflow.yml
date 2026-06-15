@@ -89,9 +89,10 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_gateway:latest
 
-  send_message:
+send_message:
     needs: build_and_push
     runs-on: ubuntu-latest
+    if: always()
 
     steps:
       - name: Send Telegram message
