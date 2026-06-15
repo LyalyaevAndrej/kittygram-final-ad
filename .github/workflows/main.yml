@@ -57,6 +57,7 @@ jobs:
 
   build_and_push:
     needs: tests
+    if: always()
     runs-on: ubuntu-latest
 
     steps:
@@ -91,6 +92,7 @@ jobs:
 
   send_message:
     needs: build_and_push
+    if: always()
     runs-on: ubuntu-latest
 
     steps:
@@ -100,7 +102,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ✅ Kittygram успешно задеплоен!
+            ✅ Kittygram workflow завершён!
             Автор: ${{ github.actor }}
             Коммит: ${{ github.sha }}
             Сообщение: ${{ github.event.commits[0].message }}
