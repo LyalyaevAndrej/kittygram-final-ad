@@ -1,4 +1,4 @@
 repo_owner: LyalyaevAndrej
-kittygram_domain: https://localhost
-taski_domain: https://localhost
+kittygram_domain: http://localhost:9000
+taski_domain: http://localhost:9000
 dockerhub_username: lyalandr
